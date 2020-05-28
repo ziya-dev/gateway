@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gateway
+
+server:
+  port: 8070
+  servlet:
+    context-path: /api
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance: localhost
+
+zuul:
+  routes:
+    hello-server:
+      path: /server/**
+      serviceId: hello-server
+    hello-client:
+      path: /client/**
+      serviceId: hello-client
+  prefix: /api
